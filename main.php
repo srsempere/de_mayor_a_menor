@@ -15,6 +15,15 @@ function esta_vacio($nombre, $ancho, $alto)
     }
 }
 
+function cmp($a, $b) {
+    $tamañoA = $a['ancho'] * $a['alto'];
+    $tamañoB = $b['ancho'] * $b['alto'];
+    if ($tamañoA == $tamañoB) {
+        return 0;
+    }
+    return ($tamañoA < $tamañoB) ? -1 : 1;
+}
+
 
 if (esta_vacio($_GET['nombre'], $_GET['ancho'], $_GET['alto'])) { // Comprueba si están vacios y != null
     $nombre = $_GET['nombre'];
@@ -26,9 +35,10 @@ if (esta_vacio($_GET['nombre'], $_GET['ancho'], $_GET['alto'])) { // Comprueba s
             echo "El producto ingresado ya existe";
         } else {
             $_SESSION['almacen'][$nombre] = array('ancho' => $ancho, 'alto' => $alto);
+            uasort($_SESSION['almacen'], 'cmp');
             echo "Artículo agregado con éxito." . "\n";
 
-            var_dump($_SESSION['almacen']);
+            var_export($_SESSION['almacen']);
         }
     } else {
         echo "Los campos ancho y alto deben ser numéricos.";
