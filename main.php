@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-$_SESSION['almacen'] = array();
+if (!isset($_SESSION['almacen'])) {
+    $_SESSION['almacen'] = array();
+}
 
 
 function esta_vacio($nombre, $ancho, $alto)
@@ -26,7 +28,7 @@ if (esta_vacio($_GET['nombre'], $_GET['ancho'], $_GET['alto'])) { // Comprueba s
             $_SESSION['almacen'][$nombre] = array('ancho' => $ancho, 'alto' => $alto);
             echo "Artículo agregado con éxito." . "\n";
 
-            var_dump($_SESSION['almacen'][$nombre]);
+            var_dump($_SESSION['almacen']);
         }
     } else {
         echo "Los campos ancho y alto deben ser numéricos.";
