@@ -37,8 +37,6 @@ if (esta_vacio($_GET['nombre'], $_GET['ancho'], $_GET['alto'])) { // Comprueba s
             $_SESSION['almacen'][$nombre] = array('ancho' => $ancho, 'alto' => $alto);
             uasort($_SESSION['almacen'], 'cmp');
             echo "Artículo agregado con éxito." . "\n";
-
-            var_export($_SESSION['almacen']);
         }
     } else {
         echo "Los campos ancho y alto deben ser numéricos.";
